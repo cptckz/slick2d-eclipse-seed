@@ -32,11 +32,12 @@ public class playerbaby {
 		player.draw(posX,posY, playerW,playerH);
 	}
 	public void move(){
-		if(direction==RIGHT){
+		if(direction == RIGHT){
 			posX -= 20;
 		}
-		else if(direction==LEFT){
+		else if(direction == LEFT){
 			posX += 20; 
+			
 		}
 		else if(direction == IDLE){
 			
