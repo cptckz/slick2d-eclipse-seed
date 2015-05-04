@@ -1,5 +1,6 @@
 package example;
-import org.newdawn.slick.Image;
+//import org.newdawn.slick.Image;
+import org.newdawn.slick.*;
 import org.newdawn.slick.SlickException;
 
 public class playerbaby {
