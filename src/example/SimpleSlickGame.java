@@ -21,8 +21,8 @@ public class SimpleSlickGame extends BasicGame
 
 	int posX = 20;
 	int posY = 340;
-	float w = 100;
-	float h = 100;
+	float w = 120;
+	float h = 180;
 	float speed = 20;
     Image player = null;
     Image player2 = null;
@@ -85,9 +85,9 @@ public class SimpleSlickGame extends BasicGame
         if(posX >900 && posX < 1200)
         door2.draw(0, 0, 1728 , Hscreen);
         if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
-        	player2.draw(posX, posY);
+        	player2.draw(posX, posY, w, h);
         }
-        player.draw(posX, posY);
+       player.draw(posX, posY, w, h);
 	}
 	public static void main(String[] args)
 	{
