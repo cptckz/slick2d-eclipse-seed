@@ -1,45 +1,61 @@
 package example;
-//import org.newdawn.slick.Image;
-import org.newdawn.slick.*;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SlickException;
 
 public class playerbaby {
-	public Image player;
-	int posX = 0;
-	int posY = 0;
-	int LEFT = 0;
-	int RIGHT = 1;
-	int IDLE = -1;
-	int direction;
-	int x, y;
-	public playerbaby(){
-    //Image player =  new Image("Rec/man2.png");
-    //Image player2 = new Image("Rec/man3.png");
-	
+	Image player = null;
+	public int LEFT = 0;
+	public int RIGHT = 1;
+	public int IDLE = -1;
+	public int direction;
+	public int posX;
+	public int posY;
 
+	public void init(GameContainer gc) 
+			throws SlickException{	
+		player = new Image("Rec/man1.png");
+		posX = 340;
+		posY = 340;
 	}
 	
-public void init() throws SlickException{
-	player = new Image("Rec/man1.png");
-	
-}
-public void draw(){
+	public void update()
+		throws SlickException
+	{
+		move();
+		player.draw(posX,posY);
+	}
+	public void move(){
+		if(direction==RIGHT){
+			posX -= 1;
+		}
+		else if(direction==LEFT){
+			posX += 1; 
+		}
+		else if(direction == IDLE){
+			
+		}
+		
+	}
+	public void render()
+	throws SlickException{
 	player.draw(posX,posY);
 }
 
-public void update(){
-	move();
-	
-}
 
-public void move(){
-	if(direction == LEFT){
-		x -= 1; 
-	}
-	else if(direction == RIGHT){
-		x += 1;		
-	}else if(direction == IDLE){
-		
-		}	
-	}
+
+//public void move(){
+//	if(direction == LEFT){
+//		x -= 1; 
+//	}
+//	else if(direction == RIGHT){
+//		x += 1;		
+//	}else if(direction == IDLE){
+//		
+//		}	
+	//}
 }

@@ -19,6 +19,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class SimpleSlickGame extends BasicGame
 {
+	
 
 	int posX = 20;
 	int posY = 340;
@@ -32,7 +33,7 @@ public class SimpleSlickGame extends BasicGame
     public int counter = 0;
     public int num = 0;
     public boolean IDLE = true;
-    public playerbaby player = new playerbaby();
+    public playerbaby player;
     Vector2f trans = new Vector2f(0, 0);
 
 
@@ -49,6 +50,8 @@ public class SimpleSlickGame extends BasicGame
 		background2 = new Image("Rec/grunge-tileset2.png");
 		door2 = new Image("Rec/grunge-tileset-door2.png");
 		gc.setTargetFrameRate(24);
+		player = new playerbaby();
+		player.init(gc);
 
 	}
 
@@ -70,7 +73,11 @@ public class SimpleSlickGame extends BasicGame
 //			posY-=20;
 //		}
 //		counter++;
-		
+		if(gc.getInput().isKeyDown(Input.KEY_D)){
+			player.direction = player.LEFT;
+		} else {
+			player.direction = player.IDLE;
+		}
 		player.update();
 	 	}
 
@@ -81,8 +88,9 @@ public class SimpleSlickGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		player.draw();
+		
         background2.draw(0, 0, 1728 , Hscreen); 
+        player.render();
 //        if(posX >900 && posX < 1200)
 //        door2.draw(0, 0, 1728 , Hscreen);
 //        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
@@ -90,15 +98,16 @@ public class SimpleSlickGame extends BasicGame
 //        	
 //        }
         
-
-        if(posX >900 && posX < 1200)
-        door2.draw(0, 0, 1728 , Hscreen);
-        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
-        	player2.draw(posX, posY, w, h);
-        }
-       player.draw(posX, posY, w, h);
+//
+//        if(posX >900 && posX < 1200)
+//        door2.draw(0, 0, 1728 , Hscreen);
+//        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
+//        	player.draw(posX, posY, w, h);
+//        }
+//       player.draw(posX, posY, w, h);
+//	}
+//   
 	}
-   
 	public static void main(String[] args)
 	{
 		try
