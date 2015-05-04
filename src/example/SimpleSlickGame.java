@@ -25,10 +25,13 @@ public class SimpleSlickGame extends BasicGame
 	float h = 100;
 	float speed = 20;
     Image player = null;
+    Image player2 = null;
+    Image player3 = null;
     Image door2 = null;
     Image background2 = null;
     public static int Wscreen = 1240;
     public static int Hscreen = 480;
+    public int counter = 0;
     
     Vector2f trans = new Vector2f(0, 0);
 
@@ -43,6 +46,8 @@ public class SimpleSlickGame extends BasicGame
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		player = new Image("Rec/man2.png");
+		player2 = new Image("Rec/man3.png");
+		player3 = new Image("Rec/man1.png");	
 		background2 = new Image("Rec/grunge-tileset2.png");
 		door2 = new Image("Rec/grunge-tileset-door2.png");
 
@@ -64,9 +69,10 @@ public class SimpleSlickGame extends BasicGame
 			posY-=20;
 
 			}
-		
-	}
+		counter++;
 
+	}
+	
 
 
 	
@@ -77,13 +83,10 @@ public class SimpleSlickGame extends BasicGame
         
         if(posX >900 && posX < 1200)
         door2.draw(0, 0, 1728 , Hscreen);
+        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
+        	player2.draw(posX, posY);
+        }
         player.draw(posX, posY);
-        
-        	
-        	
-        }
-        }
-        
 	}
 
 	public static void main(String[] args)
