@@ -50,6 +50,7 @@ public class SimpleSlickGame extends BasicGame
 		player3 = new Image("Rec/man1.png");	
 		background2 = new Image("Rec/grunge-tileset2.png");
 		door2 = new Image("Rec/grunge-tileset-door2.png");
+		gc.setTargetFrameRate(24);
 
 	}
 
@@ -88,7 +89,6 @@ public class SimpleSlickGame extends BasicGame
         }
         player.draw(posX, posY);
 	}
-
 	public static void main(String[] args)
 	{
 		try
