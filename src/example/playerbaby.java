@@ -15,19 +15,21 @@ public class playerbaby {
 	public int direction;
 	public int posX;
 	public int posY;
+	public int playerW = 90;
+	public int playerH = 180;
 
 	public void init(GameContainer gc) 
 			throws SlickException{	
-		player = new Image("Rec/man1.png");
+		player = new Image("Rec/playerwalk1.png");
 		posX = 340;
-		posY = 340;
+		posY = 210;
 	}
 	
 	public void update()
 		throws SlickException
 	{
 		move();
-		player.draw(posX,posY);
+		player.draw(posX,posY, playerW,playerH);
 	}
 	public void move(){
 		if(direction==RIGHT){
@@ -43,7 +45,7 @@ public class playerbaby {
 	}
 	public void render()
 	throws SlickException{
-	player.draw(posX,posY);
+	player.draw(posX,posY, playerW, playerH);
 }
 
 
