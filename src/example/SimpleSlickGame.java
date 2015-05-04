@@ -2,6 +2,8 @@ package example;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.scene.Camera;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -35,6 +37,8 @@ public class SimpleSlickGame extends BasicGame
     public boolean IDLE = true;
     public playerbaby player;
     Vector2f trans = new Vector2f(0, 0);
+
+    
 
 
 	public SimpleSlickGame(String gamename)
@@ -75,9 +79,11 @@ public class SimpleSlickGame extends BasicGame
 //		counter++;
 		if(gc.getInput().isKeyDown(Input.KEY_D)){
 			player.direction = player.LEFT;
-		} else {
+		} else if (gc.getInput().isKeyDown(Input.KEY_A)){
+			player.direction = player.RIGHT;
+			}else{
 			player.direction = player.IDLE;
-		}
+			}
 		player.update();
 	 	}
 
@@ -90,23 +96,12 @@ public class SimpleSlickGame extends BasicGame
 	{
 		
         background2.draw(0, 0, 1728 , Hscreen); 
+        g.drawString("ENTER DOOR TO START GAME",500, 100);
         player.render();
-//        if(posX >900 && posX < 1200)
-//        door2.draw(0, 0, 1728 , Hscreen);
-//        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
-//        	player2.draw(posX, posY);
-//        	
-//        }
-        
-//
-//        if(posX >900 && posX < 1200)
-//        door2.draw(0, 0, 1728 , Hscreen);
-//        if(gc.getInput().isKeyDown(Input.KEY_D)&&counter%4==0){
-//        	player.draw(posX, posY, w, h);
-//        }
-//       player.draw(posX, posY, w, h);
-//	}
-//   
+        if(player.posX >900 && player.posX < 1200){
+                door2.draw(0, 0, 1728 , Hscreen);
+        		System.out.print("HELLO");
+        }
 	}
 	public static void main(String[] args)
 	{

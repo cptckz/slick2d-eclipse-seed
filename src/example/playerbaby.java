@@ -31,10 +31,10 @@ public class playerbaby {
 	}
 	public void move(){
 		if(direction==RIGHT){
-			posX -= 1;
+			posX -= 20;
 		}
 		else if(direction==LEFT){
-			posX += 1; 
+			posX += 20; 
 		}
 		else if(direction == IDLE){
 			
