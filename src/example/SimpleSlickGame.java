@@ -78,6 +78,12 @@ public class SimpleSlickGame extends BasicGame
         if(posX >900 && posX < 1200)
         door2.draw(0, 0, 1728 , Hscreen);
         player.draw(posX, posY);
+        
+        	
+        	
+        }
+        }
+        
 	}
 
 	public static void main(String[] args)
