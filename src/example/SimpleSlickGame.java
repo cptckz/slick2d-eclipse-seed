@@ -57,7 +57,7 @@ public class SimpleSlickGame extends BasicGame
 		}
 		
 		if(gc.getInput().isKeyDown(Input.KEY_D)){
-			posX+= 50;
+			posX++;
 			}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_W)){
