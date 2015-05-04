@@ -59,11 +59,11 @@ public class SimpleSlickGame extends BasicGame
 	public void update(GameContainer gc, int i) throws SlickException {
 		
 		if(gc.getInput().isKeyDown(Input.KEY_A)){
-		posX--;
+		posX-=10;
 		}
 		
 		if(gc.getInput().isKeyDown(Input.KEY_D)){
-			posX++;
+			posX+=20;
 			}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_W)){
