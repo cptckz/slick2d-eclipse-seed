@@ -22,11 +22,12 @@ public class SimpleSlickGame extends BasicGame
 {
     
 
-    int posX = 20;
+    int posX = 500;
     int posY = 340;
     float w = 120;
     float h = 180;
     float speed = 20;
+    Image door1 = null;
     Image door2 = null;
     Image background2 = null;
     public boolean pressed = false;
@@ -37,7 +38,6 @@ public class SimpleSlickGame extends BasicGame
     public boolean IDLE = true;
     public playerbaby player;
     public levelone level;
-    Vector2f trans = new Vector2f(0, 0);
     Rectangle boxCollider = null;
     int levelnum = 0;
 
@@ -52,6 +52,7 @@ public class SimpleSlickGame extends BasicGame
     public void init(GameContainer gc) throws SlickException {
         boxCollider = new Rectangle(20,20,20,20);
         background2 = new Image("Rec/grunge-tileset2.png");
+        door1 = new Image("Rec/grunge-tileset-door1.png");
         door2 = new Image("Rec/grunge-tileset-door2.png");
         gc.setTargetFrameRate(24);
         player = new playerbaby();
@@ -77,7 +78,9 @@ public class SimpleSlickGame extends BasicGame
             }
         
         player.update();
-         if(player.posX >900 && player.posX < 1200){
+         
+        
+        if(player.posX >1000 && player.posX < 1150){
              if(gc.getInput().isKeyPressed(Input.KEY_W)){
                  levelnum = 1 ;
                  //System.out.println(levelnum+ " " + " "+level.screenPos);
@@ -90,10 +93,18 @@ public class SimpleSlickGame extends BasicGame
     {   
     if(levelnum == 0){
         background2.draw(0, 0, 1728 , Hscreen); 
-        g.drawString("ENTER DOOR & PRESS W TO START GAME",500, 100);
-        if(player.posX >900 && player.posX < 1200){
+       
+        if(player.posX >150 && player.posX < 250){
+            door1.draw(0, 0, 1728 , Hscreen);
+        }
+        
+        if(player.posX >1000 && player.posX < 1150){
             door2.draw(0, 0, 1728 , Hscreen);
         }
+        
+        g.drawString("ENTER DOOR & PRESS W TO START GAME",500, 100);
+
+        
     }
     if(levelnum == 1){
                     level.render();

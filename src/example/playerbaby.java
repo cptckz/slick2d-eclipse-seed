@@ -10,15 +10,18 @@ import org.newdawn.slick.SlickException;
 
 public class playerbaby {
 	Image player = null;
+	Image player2 = null;
 	public int LEFT = 0;
 	public int RIGHT = 1;
 	public int IDLE = -1;
 	public int direction;
-	public int posX = 210;
+	public int posX = 600;
 	public int posY = 210;
 	public int playerW = 90;
 	public int playerH = 180;
 	public Animation a;
+	public Animation b;
+
 
 	public Animation getAnimation ( Image player , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
 	{
@@ -43,6 +46,8 @@ public class playerbaby {
 		
 		//player = new Image("Rec/playersheet.png");
 		Image player = new Image("Rec/playersheet3.png");
+		//Image player = new Image("Rec/playersheet3.png").getFlippedCopy(true,false);
+
 		a = getAnimation ( player, posX , posY , 80, 188, 12, 100 );
 
 		
@@ -65,7 +70,6 @@ public class playerbaby {
 			posX += 20; 
 			a.update(50);
 
-			//a.draw(posX,posY, playerW,playerH);
 
 		}
 		else if(direction == IDLE){
