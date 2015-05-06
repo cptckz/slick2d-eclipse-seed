@@ -79,6 +79,13 @@ public class SimpleSlickGame extends BasicGame
         
         player.update();
          
+        if(player.posX >150 && player.posX < 250){
+            if(gc.getInput().isKeyPressed(Input.KEY_W)){
+                levelnum = 1 ;
+                //System.out.println(levelnum+ " " + " "+level.screenPos);
+                
+               }
+           }
         
         if(player.posX >1000 && player.posX < 1150){
              if(gc.getInput().isKeyPressed(Input.KEY_W)){

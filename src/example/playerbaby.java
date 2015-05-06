@@ -20,7 +20,6 @@ public class playerbaby {
 	public int playerW = 90;
 	public int playerH = 180;
 	public Animation a;
-	public Animation b;
 
 
 	public Animation getAnimation ( Image player , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
