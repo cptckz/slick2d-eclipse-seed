@@ -3,7 +3,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.scene.Camera;
-
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -36,6 +36,8 @@ public class SimpleSlickGame extends BasicGame
     public int num = 0;
     public boolean IDLE = true;
     public playerbaby player;
+    //public playerbaby a;
+
     Vector2f trans = new Vector2f(0, 0);
 
     
@@ -79,12 +81,15 @@ public class SimpleSlickGame extends BasicGame
 //		counter++;
 		if(gc.getInput().isKeyDown(Input.KEY_D)){
 			player.direction = player.LEFT;
+
 		} else if (gc.getInput().isKeyDown(Input.KEY_A)){
 			player.direction = player.RIGHT;
 			}else{
 			player.direction = player.IDLE;
 			}
 		player.update();
+
+		
 	 	}
 
 
