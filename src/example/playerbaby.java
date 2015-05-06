@@ -58,12 +58,12 @@ public class playerbaby {
 	public void move(){
 		if(direction == RIGHT){
 			posX -= 20;
-			a.update(100);
+			a.update(50);
 
 		}
 		else if(direction == LEFT){
 			posX += 20; 
-			a.update(100);
+			a.update(50);
 
 			//a.draw(posX,posY, playerW,playerH);
 
