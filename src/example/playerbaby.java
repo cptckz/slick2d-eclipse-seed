@@ -20,6 +20,7 @@ public class playerbaby {
 	public int playerW = 90;
 	public int playerH = 180;
 	public Animation a;
+	public int currentPos;
 
 
 	public Animation getAnimation ( Image player , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
@@ -43,9 +44,7 @@ public class playerbaby {
 	public void init(GameContainer gc) throws SlickException{	
 		
 		
-		//player = new Image("Rec/playersheet.png");
 		Image player = new Image("Rec/playersheet3.png");
-		//Image player = new Image("Rec/playersheet3.png").getFlippedCopy(true,false);
 
 		a = getAnimation ( player, posX , posY , 80, 188, 12, 100 );
 
@@ -64,10 +63,12 @@ public class playerbaby {
 			posX -= 20;
 			a.update(50);
 
+
 		}
 		else if(direction == LEFT){
 			posX += 20; 
 			a.update(50);
+			
 
 
 		}
@@ -79,19 +80,12 @@ public class playerbaby {
 	}
 	public void render()
 	throws SlickException{
-	a.draw(posX,posY);
+		
+	if(direction == RIGHT){	
+	//Rotates the image/animation sprites to face another direction while moving	
+	a.getCurrentFrame().getFlippedCopy(true, false).draw(posX, posY);
+	} else{
+		a.draw(posX,posY);
+	}
 }
-
-
-
-//public void move(){
-//	if(direction == LEFT){
-//		x -= 1; 
-//	}
-//	else if(direction == RIGHT){
-//		x += 1;		
-//	}else if(direction == IDLE){
-//		
-//		}	
-	//}
 }

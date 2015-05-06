@@ -1,4 +1,5 @@
 package example;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,11 +12,17 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
+
 import com.sun.javafx.geom.Rectangle;
 
 public class SimpleSlickGame extends BasicGame
@@ -24,19 +31,31 @@ public class SimpleSlickGame extends BasicGame
 
     int posX = 500;
     int posY = 340;
-    float w = 120;
-    float h = 180;
-    float speed = 20;
+    
+    //Image files
     Image door1 = null;
     Image door2 = null;
     Image background2 = null;
+    
+    //Audio files
+	public Sound doorOpen;
+    
     public boolean pressed = false;
+    
+    //Size of the game window
     public static int Wscreen = 1240;
     public static int Hscreen = 480;
+    
     public int counter = 0;
     public int num = 0;
     public boolean IDLE = true;
+    
+    //Loading classes
     public playerbaby player;
+    public Gem gems;
+    
+
+
     public levelone level;
     Rectangle boxCollider = null;
     int levelnum = 0;
@@ -50,14 +69,22 @@ public class SimpleSlickGame extends BasicGame
 
     @Override
     public void init(GameContainer gc) throws SlickException {
+    	
+ 
+		Sound doorOpen = new Sound("Rec/0584.ogg");
+    	
         boxCollider = new Rectangle(20,20,20,20);
         background2 = new Image("Rec/grunge-tileset2.png");
         door1 = new Image("Rec/grunge-tileset-door1.png");
         door2 = new Image("Rec/grunge-tileset-door2.png");
         gc.setTargetFrameRate(24);
         player = new playerbaby();
+        gems = new Gem();
+
         level = new levelone();
         player.init(gc);
+        gems.init(gc);
+
         level.init(gc);
     }
 
@@ -78,10 +105,14 @@ public class SimpleSlickGame extends BasicGame
             }
         
         player.update();
+        gems.update();
+
          
         if(player.posX >150 && player.posX < 250){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
+                
+
                 //System.out.println(levelnum+ " " + " "+level.screenPos);
                 
                }
@@ -107,6 +138,8 @@ public class SimpleSlickGame extends BasicGame
         
         if(player.posX >1000 && player.posX < 1150){
             door2.draw(0, 0, 1728 , Hscreen);
+			//doorOpen.play(1.0f, 1.0f);
+
         }
         
         g.drawString("ENTER DOOR & PRESS W TO START GAME",500, 100);
@@ -117,6 +150,9 @@ public class SimpleSlickGame extends BasicGame
                     level.render();
             }
     player.render();
+    gems.render();
+
+
     }
     public static void main(String[] args)
     {
