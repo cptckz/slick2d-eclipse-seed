@@ -1,5 +1,7 @@
 package example;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.Camera;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -10,29 +12,36 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
-public class levelone{
-    public static int Wscreen = 1240;
-    public static int Hscreen = 480;
 
-	public levelone(String gamename) {
-		
-	}
-	public static Image levelet = null;
-	
-	public void init(GameContainer gc) 
-			throws SlickException{
-		levelet = new Image("Rec/levelet.png");
-	}
-	public static void render()
-	throws SlickException{
-		levelet.draw(0,0,Wscreen,Hscreen);
-		
-	}
-	public void update()
-	throws SlickException{
-		levelet.draw(0,0,Wscreen,Hscreen);
-	}
 
+public class levelone extends playerbaby{
+   
+    
+    Image background3 = null;
+    public int screenPos = 0;
+    public boolean moveScreen = false;
+    
+    
+    public levelone() throws SlickException{
+                    
+    }
+    public void init(GameContainer gc) throws SlickException{
+        background3 = new Image("Rec/levelet.png"); 
+    }   
+    public void update(){
+        if(moveScreen == true){
+            screenPos+=50;
+            //background3.draw(0, 0, 1728 , 480); 
+        }
+        
+    }
+    public void render() throws SlickException
+    {
+           background3.draw(screenPos, 0, 1728 , 480); 
+         //  System.out.println("!the level has been executed!");
+        
+    }
 }
