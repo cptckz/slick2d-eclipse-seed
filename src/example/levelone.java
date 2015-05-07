@@ -22,9 +22,9 @@ public class levelone extends playerbaby{
     
     Image background3 = null;
     public int screenPos = 0;
-    public boolean moveScreen = false;
+    public static boolean moveScreen = false;
+
     
-    // hej fredrik
     public levelone() throws SlickException{
                     
     }
