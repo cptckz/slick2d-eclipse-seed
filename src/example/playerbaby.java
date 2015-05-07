@@ -10,7 +10,8 @@ import org.newdawn.slick.SlickException;
 
 public class playerbaby {
 	Image player = null;
-	Image player2 = null;
+	//Image playerIdle = null;
+	
 	public int LEFT = 0;
 	public int RIGHT = 1;
 	public int IDLE = -1;
@@ -45,6 +46,7 @@ public class playerbaby {
 		
 		
 		Image player = new Image("Rec/playersheet3.png");
+		//Image playerIdle = new Image("Rec/playerIdle.png");
 
 		a = getAnimation ( player, posX , posY , 80, 188, 12, 100 );
 
@@ -72,8 +74,9 @@ public class playerbaby {
 
 
 		}
-		else if(direction == IDLE){
-			
+		else{
+			//playerIdle.draw(posX,posY);
+
 		}
 		//a.update();
 
@@ -84,8 +87,11 @@ public class playerbaby {
 	if(direction == RIGHT){	
 	//Rotates the image/animation sprites to face another direction while moving	
 	a.getCurrentFrame().getFlippedCopy(true, false).draw(posX, posY);
-	} else{
+	
+	} else {
 		a.draw(posX,posY);
+		//playerIdle.draw(posX,posY);
+	}
 	}
 }
-}
+

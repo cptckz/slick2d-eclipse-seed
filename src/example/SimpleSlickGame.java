@@ -52,6 +52,7 @@ public class SimpleSlickGame extends BasicGame
     
     //Loading classes
     public playerbaby player;
+    //public playerbaby playerIdle;
     public Gem gems;
     
 
@@ -105,6 +106,8 @@ public class SimpleSlickGame extends BasicGame
             }
         
         player.update();
+        //playerIdle.update();
+
         gems.update();
 
          
