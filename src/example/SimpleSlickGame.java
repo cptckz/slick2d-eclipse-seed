@@ -45,7 +45,7 @@ public class SimpleSlickGame extends BasicGame
     //Size of the game window
     public static int Wscreen = 1240;
     public static int Hscreen = 480;
-    
+    public boolean startPos = true;
     public int counter = 0;
     public int num = 0;
     public boolean IDLE = true;
@@ -103,6 +103,10 @@ public class SimpleSlickGame extends BasicGame
         if(player.posX >1000 && player.posX < 1150){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
+                if(startPos==true){
+                	player.posX=100;
+                	startPos=false;
+                }
            }
        	}
         
