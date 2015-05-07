@@ -21,19 +21,23 @@ public class levelone extends playerbaby{
    
     
     Image background3 = null;
+    Image background4 = null;
     public int screenPos = 0;
-    public static boolean moveScreen = false;
+    public boolean moveScreen = false;
 
     
     public levelone() throws SlickException{
+    
                     
     }
     public void init(GameContainer gc) throws SlickException{
-        background3 = new Image("Rec/levelet.png"); 
+        background3 = new Image("Rec/spacepara5.png"); 
+        background4 = new Image("Rec/spacepara1.png");
     }   
     public void update(){
         if(moveScreen == true){
             screenPos-=60;
+           // System.out.println("hey");
             //background3.draw(0, 0, 1728 , 480); 
         }
         

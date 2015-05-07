@@ -58,6 +58,7 @@ public class SimpleSlickGame extends BasicGame
 
 
     public levelone level;
+
     int levelnum = 0;
 
     public SimpleSlickGame(String gamename)
@@ -72,61 +73,58 @@ public class SimpleSlickGame extends BasicGame
     	
  
 		Sound doorOpen = new Sound("Rec/0584.ogg");
-    	
-        
         background2 = new Image("Rec/grunge-tileset2.png");
         door1 = new Image("Rec/grunge-tileset-door1.png");
         door2 = new Image("Rec/grunge-tileset-door2.png");
         gc.setTargetFrameRate(24);
         player = new playerbaby();
         gems = new Gem();
-
         level = new levelone();
         player.init(gc);
         gems.init(gc);
-
         level.init(gc);
     }
 
     
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
-        
-        if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
+    	level.update();
+    	player.update();
+    	gems.update();
+    	
+    	if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
             player.direction = player.LEFT;
-            if(levelnum==1){
-            level.update();
-            }
         } else if (gc.getInput().isKeyDown(Input.KEY_A)&&levelnum==0){
             player.direction = player.RIGHT;
             }else{
             player.direction = player.IDLE;
-            }
-     
-        
-        player.update();
-        //playerIdle.update();
-
-        gems.update();
-        
-        if(player.posX >1000 && player.posX < 1150){
-             if(gc.getInput().isKeyPressed(Input.KEY_W)){
-                 levelnum = 1 ;
-                 //System.out.println(levelnum+ " " + " "+level.screenPos);
-                 
-                }
-            }
-         
-        if(player.posX >150 && player.posX < 250&&gc.getInput().isKeyPressed(Input.KEY_W)){
-                levelnum = 1 ; 
-               
+            }    
           
+        if(player.posX >1000 && player.posX < 1150){
+            if(gc.getInput().isKeyPressed(Input.KEY_W)){
+                levelnum = 1 ;
+           }
+       	}
+        
+        
+        if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)){
+        	gems.moveGem = true;
+        	player.levelnr=1; 
+            level.moveScreen= true;  
+            player.movePlayer=false;
+            player.playerWalking=true;
+            
+           }else{
+        	   level.moveScreen= false;
+        	   gems.moveGem = false;
+        	   player.playerWalking=false; 
+    } 
+        	if(levelnum==0){ 
+        	   player.movePlayer=true;
+           }
         }
-        if(levelnum==1){
-        	levelone.moveScreen=true;
-        	//System.out.println("heu"); 
-        }
-    }
+    
+    
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException
     {   
@@ -149,9 +147,10 @@ public class SimpleSlickGame extends BasicGame
     }
     if(levelnum == 1){
                     level.render();
+                    gems.render();
             }
     player.render();
-    gems.render();
+    
 
 
     }
