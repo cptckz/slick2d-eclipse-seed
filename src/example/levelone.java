@@ -33,7 +33,7 @@ public class levelone extends playerbaby{
     }   
     public void update(){
         if(moveScreen == true){
-            screenPos+=50;
+            screenPos-=60;
             //background3.draw(0, 0, 1728 , 480); 
         }
         
