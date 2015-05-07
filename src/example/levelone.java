@@ -22,7 +22,13 @@ public class levelone extends playerbaby{
     
     Image background3 = null;
     Image background4 = null;
+    Image background5 = null;
+    Image background2 = null;
+    Image background1 = null;
     public int screenPos = 0;
+    public int screenPos1 = 0;
+    public int screenPos2 = 0;
+    public int screenPos3 = 0;
     public boolean moveScreen = false;
 
     
@@ -31,12 +37,19 @@ public class levelone extends playerbaby{
                     
     }
     public void init(GameContainer gc) throws SlickException{
-        background3 = new Image("Rec/spacepara5.png"); 
-        background4 = new Image("Rec/spacepara1.png");
-    }   
+        background5 = new Image("Rec/spacepara5.png"); 
+        background1 = new Image("Rec/spacepara1.png");
+        background2 = new Image("Rec/spacepara2.png");
+        background3 = new Image("Rec/spacepara3.png");
+        background4 = new Image("Rec/spacepara4.png");
+    }
     public void update(){
         if(moveScreen == true){
-            screenPos-=60;
+            screenPos-=5;
+            screenPos1-= 15;
+            screenPos2-=30;
+            screenPos3-=60;
+            
            // System.out.println("hey");
             //background3.draw(0, 0, 1728 , 480); 
         }
@@ -44,7 +57,11 @@ public class levelone extends playerbaby{
     }
     public void render() throws SlickException
     {
-           background3.draw(screenPos, 0, 1728 , 480); 
+    	   background1.draw(0,0,1738,480);
+    	   background2.draw(screenPos,0,1738,480);
+    	   background3.draw(screenPos1,0,1738,480);
+    	   background4.draw(screenPos2,0,1738,480);
+           background5.draw(screenPos3, 0, 1728 , 480); 
          //  System.out.println("!the level has been executed!");
         
     }
