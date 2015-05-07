@@ -22,6 +22,10 @@ public class playerbaby {
 	public int playerH = 180;
 	public Animation a;
 	public int currentPos;
+	public boolean movePlayer = true;
+	public boolean playerWalking = false;
+	public int levelnr = 0;
+	
 
 
 	public Animation getAnimation ( Image player , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
@@ -64,15 +68,10 @@ public class playerbaby {
 		if(direction == RIGHT){
 			posX -= 20;
 			a.update(50);
-
-
 		}
 		else if(direction == LEFT){
 			posX += 20; 
 			a.update(50);
-			
-
-
 		}
 		else{
 			//playerIdle.draw(posX,posY);
@@ -80,6 +79,9 @@ public class playerbaby {
 		}
 		//a.update();
 
+if(movePlayer==false&&levelnr==1&&playerWalking==true){
+	a.update(50);
+}
 	}
 	public void render()
 	throws SlickException{

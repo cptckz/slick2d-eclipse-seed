@@ -3,13 +3,15 @@ package example;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public class Gem {
+public class Gem extends playerbaby {
 	public int gemX = 300;
 	public int gemY = 200;
 	Image gems = null;
 	public Animation gemAnim;
+	public boolean moveGem = true;
 
 
 	public Animation getAnimation ( Image gems , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
@@ -41,8 +43,13 @@ public void init(GameContainer gc) throws SlickException{
 public void update()
 		throws SlickException
 	{
-	gemAnim.update(50);
+	
+gemAnim.update(50);
 
+
+if(moveGem==true){
+	gemX-=10;
+}
 
 	}
 
