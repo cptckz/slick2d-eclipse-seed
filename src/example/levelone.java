@@ -1,4 +1,4 @@
-package example;
+	package example;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Camera;
