@@ -7,12 +7,18 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Gem extends playerbaby {
-	public int gemX = 300;
-	public int gemY = 200;
+
+	public int gemY = 250;
 	Image gems = null;
 	public Animation gemAnim;
 	public boolean moveGem = true;
+    public int gemX = 200;
 
+    Gem() throws SlickException{
+    	
+		Image gems = new Image("Rec/gemsheet.png");
+		gemAnim = getAnimation ( gems, gemX , gemY , 200, 200, 8, 100 );
+    }
 
 	public Animation getAnimation ( Image gems , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
 	{
@@ -31,14 +37,8 @@ public class Gem extends playerbaby {
 		return gemAnim;
 	}
 	
-public void init(GameContainer gc) throws SlickException{	
-		
-		
-		Image gems = new Image("Rec/gemsheet.png");
 
-		gemAnim = getAnimation ( gems, gemX , gemY , 200, 200, 8, 100 );
-		
-	}
+
 	
 public void update()
 		throws SlickException

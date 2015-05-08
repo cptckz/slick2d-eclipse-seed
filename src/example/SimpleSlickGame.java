@@ -52,18 +52,25 @@ public class SimpleSlickGame extends BasicGame
     public int counter = 0;
     public int num = 0;
     public boolean IDLE = true;
+    public int endOfScreen = -15000;
     
+    
+
     //Loading classes
     public playerbaby player;
     //public playerbaby playerIdle;
-    public Gem gems;
+    //public Gem gems;
     
+   
 
-
+    
     public levelone level;
-
+    public GameOver gameOver;
+    
     int levelnum = 0;
-
+    
+    
+    public Gem[] gems = new Gem[10];
     public SimpleSlickGame(String gamename)
     {
         super(gamename);
@@ -83,10 +90,24 @@ public class SimpleSlickGame extends BasicGame
         door2 = new Image("Rec/grunge-tileset-door2.png");
         gc.setTargetFrameRate(24);
         player = new playerbaby();
-        gems = new Gem();
+        
+        
+      
+        
         level = new levelone();
+        gameOver = new GameOver();
         player.init(gc);
-        gems.init(gc);
+//        gems[1].init(gc);
+        System.out.println("GEMS    "+gems[1]);
+       // gems[0].init(gc);
+      //  gems = new Gem[10];
+        
+        for(int i = 0; i<gems.length;i++){
+        	gems[i] = new Gem();
+        	gems[i].gemX = 600*i+400;
+        }
+        
+        
         level.init(gc);
         
         mainLevel.play(); 
@@ -100,12 +121,19 @@ public class SimpleSlickGame extends BasicGame
     public void update(GameContainer gc, int i) throws SlickException {
     	level.update();
     	player.update();
+
     	gems.update();
+
     	
     	
-    	
-    	
-    	
+    	 for(int i2 = 0; i2<10;i2++){
+    	       
+    		 
+    		 gems[i2].update();
+    	        
+    	        
+    	       
+    	        }    	
     	if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
             player.direction = player.LEFT;
         } else if (gc.getInput().isKeyDown(Input.KEY_A)&&levelnum==0){
@@ -126,6 +154,7 @@ public class SimpleSlickGame extends BasicGame
                 
                 if(startPos==true){
                 	player.posX=100;
+                	player.posY=280;
                 	startPos=false;
                 }
            }
@@ -135,20 +164,39 @@ public class SimpleSlickGame extends BasicGame
         
         
         if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)){
-        	gems.moveGem = true;
+        	
+        	for(int i4 = 0; i4<gems.length;i4++ ){
+        	gems[i4].moveGem = true;
+        	}
         	player.levelnr=1; 
             level.moveScreen= true;  
             player.movePlayer=false;
             player.playerWalking=true;
+         
+            
+           for(int i5 = 0;i5<gems.length;i5++){
+            if(player.posX==gems[i5].gemX+70){
+            	gems[i5].gemY=-200;
+            	level.points++;
+            }
+          }
             
            }else{
         	   level.moveScreen= false;
-        	   gems.moveGem = false;
+        	   
+        	   for(int i6 = 0; i6<gems.length;i6++){
+        	   gems[i6].moveGem = false;
+        	   }
+        	   
         	   player.playerWalking=false; 
     } 
         	if(levelnum==0){ 
         	   player.movePlayer=true;
            }
+        	if(level.screenPos3<endOfScreen){
+        		levelnum=2;
+        	}
+        	
         }
     
     
@@ -167,19 +215,24 @@ public class SimpleSlickGame extends BasicGame
 			//doorOpen.play(1.0f, 1.0f);
 
         }
-        
+              
         g.drawString("ENTER DOOR & PRESS W TO START GAME",500, 100);
-
-        
     }
-    if(levelnum == 1){
-                    level.render();
-                    gems.render();
-            }
-    player.render();
     
-
-
+    
+    if(levelnum == 1){
+                    level.render(g);
+                    
+                    for(int i3 = 0; i3<gems.length;i3++){
+                    	gems[i3].render();
+           }
+    	}
+    player.render();
+    if(level.screenPos3<endOfScreen&&levelnum==2){
+    	gameOver.points = level.points;
+        gameOver.render(g);	
+        	}
+    
     }
     public static void main(String[] args)
     {
