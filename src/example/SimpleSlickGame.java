@@ -70,7 +70,7 @@ public class SimpleSlickGame extends BasicGame
     int levelnum = 0;
     
     
-    public Gem[] gems = new Gem[10];
+    public Gem[] gems = new Gem[4];
     public SimpleSlickGame(String gamename)
     {
         super(gamename);
@@ -125,7 +125,7 @@ public class SimpleSlickGame extends BasicGame
 
     	
     	
-    	 for(int i2 = 0; i2<10;i2++){
+    	 for(int i2 = 0; i2<gems.length;i2++){
     	       
     		 
     		 gems[i2].update();
