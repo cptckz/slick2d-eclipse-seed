@@ -17,7 +17,7 @@ public class playerbaby {
 	public int IDLE = -1;
 	public int direction;
 	public int posX = 600;
-	public int posY = 280;
+	public int posY = 210;
 	public int playerW = 90;
 	public int playerH = 180;
 	public Animation a;
