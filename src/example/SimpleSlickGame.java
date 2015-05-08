@@ -39,7 +39,6 @@ public class SimpleSlickGame extends BasicGame
     
     //Audio files
 	public Sound doorOpen;
-
 	
 	//Music files
 	Music mainLevel;
@@ -73,7 +72,7 @@ public class SimpleSlickGame extends BasicGame
     int levelnum = 0;
     
     
-    public Gem[] gems = new Gem[10];
+    public Gem[] gems = new Gem[4];
     public SimpleSlickGame(String gamename)
     {
         super(gamename);
@@ -84,7 +83,9 @@ public class SimpleSlickGame extends BasicGame
     @Override
     public void init(GameContainer gc) throws SlickException {
     	
- 
+        mainLevel = new Music("Rec/impact-of-silence.ogg");
+        levelOneMusic = new Music("Rec/vicious.ogg");
+        
 		Sound doorOpen = new Sound("Rec/0584.ogg");
         background2 = new Image("Rec/grunge-tileset2.png");
         door1 = new Image("Rec/grunge-tileset-door1.png");
@@ -110,6 +111,11 @@ public class SimpleSlickGame extends BasicGame
         
         
         level.init(gc);
+        
+        mainLevel.play(); 
+        
+        
+        
     }
 
     
@@ -117,17 +123,18 @@ public class SimpleSlickGame extends BasicGame
     public void update(GameContainer gc, int i) throws SlickException {
     	level.update();
     	player.update();
+
+
     	
     	
-    	 for(int i2 = 0; i2<10;i2++){
+    	 for(int i2 = 0; i2<gems.length;i2++){
     	       
     		 
     		 gems[i2].update();
     	        
     	        
     	       
-    	        }
-    	
+    	        }    	
     	if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
             player.direction = player.LEFT;
         } else if (gc.getInput().isKeyDown(Input.KEY_A)&&levelnum==0){
@@ -139,13 +146,22 @@ public class SimpleSlickGame extends BasicGame
         if(player.posX >1000 && player.posX < 1150){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
+                
+                mainLevel.stop(); 
+                levelOneMusic.play();
+                
+                if(!levelOneMusic.playing())
+                	levelOneMusic.loop();
+                
                 if(startPos==true){
                 	player.posX=100;
                 	player.posY=280;
                 	startPos=false;
                 }
            }
-       	}
+       	}	
+        
+        
         
         
         if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)){
