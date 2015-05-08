@@ -59,7 +59,7 @@ public class levelone extends playerbaby{
     {
     	   background1.draw(0,0,1738,480);
     	   background2.draw(screenPos,0,14387,480);
-    	   background3.draw(screenPos1,0,14387,480);
+    	   background3.draw(screenPos1,0,14387,480);	
     	   background4.draw(screenPos2,0,14387,480);
            background5.draw(screenPos3, 0, 14387 , 480); 
          //  System.out.println(	"!the level has been executed!");

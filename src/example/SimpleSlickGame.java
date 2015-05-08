@@ -39,6 +39,9 @@ public class SimpleSlickGame extends BasicGame
     
     //Audio files
 	public Sound doorOpen;
+	Music mainLevel;
+	Music levelOneMusic;
+
     
     public boolean pressed = false;
     
@@ -71,7 +74,9 @@ public class SimpleSlickGame extends BasicGame
     @Override
     public void init(GameContainer gc) throws SlickException {
     	
- 
+        mainLevel = new Music("Rec/impact-of-silence.ogg");
+        levelOneMusic = new Music("Rec/vicious.ogg");
+        
 		Sound doorOpen = new Sound("Rec/0584.ogg");
         background2 = new Image("Rec/grunge-tileset2.png");
         door1 = new Image("Rec/grunge-tileset-door1.png");
@@ -83,6 +88,11 @@ public class SimpleSlickGame extends BasicGame
         player.init(gc);
         gems.init(gc);
         level.init(gc);
+        
+        mainLevel.play(); 
+        
+        
+        
     }
 
     
@@ -91,6 +101,10 @@ public class SimpleSlickGame extends BasicGame
     	level.update();
     	player.update();
     	gems.update();
+    	
+    	
+    	
+    	
     	
     	if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
             player.direction = player.LEFT;
@@ -103,12 +117,21 @@ public class SimpleSlickGame extends BasicGame
         if(player.posX >1000 && player.posX < 1150){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
+                
+                mainLevel.stop(); 
+                levelOneMusic.play();
+                
+                if(!levelOneMusic.playing())
+                	levelOneMusic.loop();
+                
                 if(startPos==true){
                 	player.posX=100;
                 	startPos=false;
                 }
            }
-       	}
+       	}	
+        
+        
         
         
         if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)){
