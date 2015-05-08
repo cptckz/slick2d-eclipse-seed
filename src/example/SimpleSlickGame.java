@@ -31,7 +31,6 @@ public class SimpleSlickGame extends BasicGame
 
     int posX = 500;
     int posY = 340;
-    
     //Image files
     Image door1 = null;
     Image door2 = null;
@@ -67,12 +66,13 @@ public class SimpleSlickGame extends BasicGame
 
     
     public levelone level;
+    public levelTwo levelt;
     public GameOver gameOver;
     
     int levelnum = 0;
     
     
-    public Gem[] gems = new Gem[4];
+    public Gem[] gems = new Gem[10];
     public SimpleSlickGame(String gamename)
     {
         super(gamename);
@@ -99,6 +99,7 @@ public class SimpleSlickGame extends BasicGame
       
         
         level = new levelone();
+        levelt = new levelTwo();
         gameOver = new GameOver();
         player.init(gc);
 //        gems[1].init(gc);
@@ -113,8 +114,7 @@ public class SimpleSlickGame extends BasicGame
         
         
         level.init(gc);
-
-        
+        levelt.init(gc);
         mainLevel.play(); 
         
         
@@ -125,7 +125,9 @@ public class SimpleSlickGame extends BasicGame
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
     	level.update();
+    	levelt.update();
     	player.update();
+    
 
 
     	
@@ -149,9 +151,6 @@ public class SimpleSlickGame extends BasicGame
         if(player.posX >1000 && player.posX < 1150){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
-                
-            
-                
                 mainLevel.stop();
                 levelOneMusic.play();
                 if(!levelOneMusic.playing()){
@@ -163,31 +162,47 @@ public class SimpleSlickGame extends BasicGame
                 	startPos=false;
                 }
            }
-       	}	
+       	}
+        if(player.posX >150 && player.posX < 250){
+        	if(gc.getInput().isKeyPressed(Input.KEY_W)){
+            levelnum=3;
+            if(startPos==true){
+            	player.posX=100;
+            	player.posY=280;
+            	startPos=false;
+            }
+            
+        	}
+        }
         
         
         
         
-        if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)){
+        if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)||levelnum==3&&gc.getInput().isKeyDown(Input.KEY_D)){
         	
         	for(int i4 = 0; i4<gems.length;i4++ ){
         	gems[i4].moveGem = true;
         	}
         	player.levelnr=1; 
-            level.moveScreen= true;  
+            level.moveScreen= true;
+            levelt.moveScreen = true;
             player.movePlayer=false;
             player.playerWalking=true;
          
             
            for(int i5 = 0;i5<gems.length;i5++){
-            if(player.posX==gems[i5].gemX+70){
+            if(player.posX==gems[i5].gemX+70&&gems[i5].gemY>-200&&levelnum==1){
             	gems[i5].gemY=-200;
             	level.points++;
+            }else if(player.posX==gems[i5].gemX+70&&gems[i5].gemY>-200&&levelnum==3){
+            	gems[i5].gemY=-200;
+            	levelt.points++;
+            	}
             }
-          }
-            
+             
            }else{
         	   level.moveScreen= false;
+        	   levelt.moveScreen = false;
         	   
         	   for(int i6 = 0; i6<gems.length;i6++){
         	   gems[i6].moveGem = false;
@@ -201,13 +216,22 @@ public class SimpleSlickGame extends BasicGame
         	if(level.screenPos3<endOfScreen){
         		levelnum=2;
         	}
-        	
+          
+  
+        	System.out.println(levelnum);
         }
     
     
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException
-    {   
+    {  
+      	
+    	if(gc.getInput().isKeyDown(Input.KEY_0)){
+    	levelnum=0;
+    	startPos= true;
+    	levelt.points=0;
+    	level.points=0;
+    }
     if(levelnum == 0){
         background2.draw(0, 0, 1728 , Hscreen); 
        
@@ -232,12 +256,25 @@ public class SimpleSlickGame extends BasicGame
                     	gems[i3].render();
            }
     	}
-    player.render();
-    if(level.screenPos3<endOfScreen&&levelnum==2){
-    	gameOver.points = level.points;
+
+   
+    if(level.screenPos3<endOfScreen&&levelnum==2 || levelt.screenPos3<endOfScreen&&levelnum==2){
+    	gameOver.points = level.points+levelt.points;
+    	level.screenPos3 = 0;
         gameOver.render(g);	
+        
         	}
-    
+    if(levelnum == 3){
+ 	   levelt.render(g);
+        for(int i3 = 0; i3<gems.length;i3++){
+        	gems[i3].render();
+ }   
+    }
+    player.render();
+//    if(gc.getInput().isKeyDown(Input.KEY_0)){
+//    	levelnum=0;
+//    	startPos= true;
+//    }
     }
     public static void main(String[] args)
     {
