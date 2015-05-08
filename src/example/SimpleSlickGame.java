@@ -83,7 +83,8 @@ public class SimpleSlickGame extends BasicGame
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-    	
+    	mainLevel = new Music("Rec/impact-of-silence.ogg");
+    	levelOneMusic = new Music("Rec/vicious.ogg");    	
  
 		Sound doorOpen = new Sound("Rec/0584.ogg");
         background2 = new Image("Rec/grunge-tileset2.png");
@@ -110,6 +111,7 @@ public class SimpleSlickGame extends BasicGame
         
         
         level.init(gc);
+        mainLevel.play();
     }
 
     
@@ -139,6 +141,11 @@ public class SimpleSlickGame extends BasicGame
         if(player.posX >1000 && player.posX < 1150){
             if(gc.getInput().isKeyPressed(Input.KEY_W)){
                 levelnum = 1 ;
+                mainLevel.stop();
+                levelOneMusic.play();
+                if(!levelOneMusic.playing()){
+                	levelOneMusic.loop();
+                }
                 if(startPos==true){
                 	player.posX=100;
                 	player.posY=280;
