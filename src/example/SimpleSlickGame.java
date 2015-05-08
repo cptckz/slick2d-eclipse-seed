@@ -122,7 +122,6 @@ public class SimpleSlickGame extends BasicGame
     	level.update();
     	player.update();
 
-    	gems.update();
 
     	
     	
