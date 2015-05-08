@@ -15,11 +15,11 @@ public class Gem extends playerbaby {
     public int gemX = 200;
 
     Gem() throws SlickException{
-    	
+    	//initialising the diamond image and animation
 		Image gems = new Image("Rec/gemsheet.png");
 		gemAnim = getAnimation ( gems, gemX , gemY , 200, 200, 8, 100 );
     }
-
+//creating the diamond animation
 	public Animation getAnimation ( Image gems , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
 	{
 		Animation gemAnim = new Animation(false);
@@ -46,7 +46,7 @@ public void update()
 	
 gemAnim.update(50);
 
-
+//moving the diamonds, creating the sensation of the player moving
 if(moveGem==true){
 	gemX-=10;
 }
@@ -55,6 +55,7 @@ if(moveGem==true){
 
 public void render()
 		throws SlickException{
+	//rendering the diamond animation
 		gemAnim.draw(gemX,gemY);
 	}
 	

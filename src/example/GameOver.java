@@ -19,7 +19,9 @@ public int points = 0;
 public void render(Graphics g) throws SlickException
 {
 	g.setBackground(Color.black);
-	g.drawString("!FINISH! you've got "+points+" points",100,100);
+	g.drawString("!FINISH! you've got "+points+" points",250,50);
+    g.drawString("PRESS 0 TO RESTART", 250, 100);
+
 	
 }
 }

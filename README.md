@@ -1,22 +1,8 @@
-# Slick2D Eclipse Seed Project
-This an eclipse project containing all the files necessary to begin developing games with [Slick 2D](http://slick.ninjacave.com/). You can fork this repository, clone it on your disk and start to work in Eclipse.
+A side-scrolling game heavily inspired by ‘Lone Survivor’, ‘Superbrothers: Sword and Sworcery’ as well as ‘Terraria’. 
+The art style and controls are from the two former examples and the idea of a large world meant for exploring is from the latter. Not so much about crafting and surviving, the idea was to be a more mindful experience taking players through cool pixel-art environments and letting them explore and collect tokens to progress.
 
-After having cloned the repository to your disk you have to follow these few steps:
+The controls are simple and easy to operate in order to create a serene experience while playing.
+Collection of tokens must be collected in order for the player to escape in the end, however development never reached this stage.
 
-1. Open up Eclipse.
-2. Create a new java project and select the folder containing this seed.
-2. Go to Project --> Properties in the menu bar.
-3. Click on Java Build Path.
-4. click the Add Jar button.
-5. Select the *lib* folder in your project.
-6. Select all the *.jar* files and click OK.
-7. Expand *lwjgl.jar*.
-8. Select *Natives Library Location* and click the Edit button.
-9. Click the Workspace button.
-10. Select the *native* folder in your project
-11. Select your operating system and click OK until you get back to the default eclipse window.
-12. Press play to check it it works.
-13. Now, you can start making your own game.
-14. hello Torkell!
-15. Hey tob din bisse
-16. Fuck you guys...
+
+

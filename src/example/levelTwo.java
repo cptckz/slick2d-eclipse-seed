@@ -18,7 +18,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 
 public class levelTwo extends playerbaby{
-   
+   //Declaring the background images
 	Image background1 = null;
 	Image background2 = null;
     Image background3 = null;
@@ -26,14 +26,14 @@ public class levelTwo extends playerbaby{
     Image background5 = null;
     
 
-    
+    // initialsing the background positions
     public int screenPos = 0;
     public int screenPos1 = 0;
     public int screenPos2 = 0;
     public int screenPos3 = 0;
     public boolean moveScreen = false;
     
-    
+    // initialising the points
     public int points = 0;
 
     
@@ -42,6 +42,7 @@ public class levelTwo extends playerbaby{
                     
     }
     public void init(GameContainer gc) throws SlickException{ 
+    	// initialising the background images
         background1 = new Image("Rec/spacepara1.png");
         background2 = new Image("Rec/mounpara2.png");
         background3 = new Image("Rec/mounpara3.png");
@@ -51,6 +52,7 @@ public class levelTwo extends playerbaby{
       
     }
     public void update(){
+    	//updating the image positions, creating the sensation of the player moving
         if(moveScreen == true){
             screenPos-=5;
             screenPos1-= 15;
@@ -62,7 +64,7 @@ public class levelTwo extends playerbaby{
     }
     public void render(Graphics g) throws SlickException
     {
-    	   
+    	   //rendering the images
     	   background1.draw(0,0,1738,480);
     	   background2.draw(screenPos,0,14387,480);
     	   background3.draw(screenPos1,0,14387,480);	
@@ -73,7 +75,7 @@ public class levelTwo extends playerbaby{
     	   background4.draw(screenPos2+14387,0,14387,480);
            background5.draw(screenPos3+14387, 0, 14387 , 480);
            
-           
+           // rendering the string
            g.drawString("DIAMONDS = " + points, 10, 25);
     }
 }

@@ -10,7 +10,6 @@ import org.newdawn.slick.SlickException;
 
 public class playerbaby {
 	Image player = null;
-	//Image playerIdle = null;
 	
 	public int LEFT = 0;
 	public int RIGHT = 1;
@@ -20,7 +19,7 @@ public class playerbaby {
 	public int posY = 210;
 	public int playerW = 90;
 	public int playerH = 180;
-	public Animation a;
+	public Animation playerAnim;
 	public int currentPos;
 	public boolean movePlayer = true;
 	public boolean playerWalking = false;
@@ -30,29 +29,29 @@ public class playerbaby {
 
 	public Animation getAnimation ( Image player , int spritesX, int spritesY , int spriteWidth , int spriteHeight, int frames, int duration )
 	{
-		Animation a = new Animation(false);
+		// creating the player animation
+		Animation playerAnim = new Animation(false);
 		
 		int c = 0;
 		for( int y = 0 ; y < spritesY; y++)
 		{
 			for( int x = 0 ; x < spritesX; x++)
 			{
-				if( c < frames ) a.addFrame( player.getSubImage(x*spriteWidth, y*spriteHeight, spriteWidth, spriteHeight), duration);
+				if( c < frames ) playerAnim.addFrame( player.getSubImage(x*spriteWidth, y*spriteHeight, spriteWidth, spriteHeight), duration);
 				c++;
 			}
 		}
 		
-		return a;
+		return playerAnim;
 	}
 
 	
 	public void init(GameContainer gc) throws SlickException{	
 		
-		
+		//initialising the player image
 		Image player = new Image("Rec/playersheet3.png");
-		//Image playerIdle = new Image("Rec/playerIdle.png");
-
-		a = getAnimation ( player, posX , posY , 80, 188, 12, 100 );
+		//initialising the player animation
+		playerAnim = getAnimation ( player, posX , posY , 80, 188, 12, 100 );
 
 		
 		
@@ -65,22 +64,21 @@ public class playerbaby {
 
 	}
 	public void move(){
+		//using the player inputs
 		if(direction == RIGHT){
 			posX -= 20;
-			a.update(50);
+			playerAnim.update(50);
 		}
 		else if(direction == LEFT){
 			posX += 20; 
-			a.update(50);
+			playerAnim.update(50);
 		}
 		else{
-			//playerIdle.draw(posX,posY);
 
 		}
-		//a.update();
 
 if(movePlayer==false&&levelnr==1&&playerWalking==true){
-	a.update(50);
+	playerAnim.update(50);
 }
 	}
 	public void render()
@@ -88,11 +86,10 @@ if(movePlayer==false&&levelnr==1&&playerWalking==true){
 		
 	if(direction == RIGHT){	
 	//Rotates the image/animation sprites to face another direction while moving	
-	a.getCurrentFrame().getFlippedCopy(true, false).draw(posX, posY);
+		playerAnim.getCurrentFrame().getFlippedCopy(true, false).draw(posX, posY);
 	
 	} else {
-		a.draw(posX,posY);
-		//playerIdle.draw(posX,posY);
+		playerAnim.draw(posX,posY);
 	}
 	}
 }

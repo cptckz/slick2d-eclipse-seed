@@ -31,20 +31,18 @@ public class SimpleSlickGame extends BasicGame
 
     int posX = 500;
     int posY = 340;
+  
+    
     //Image files
     Image door1 = null;
     Image door2 = null;
     Image background2 = null;
-    
-    //Audio files
-	public Sound doorOpen;
 	
-	//Music files
+	//declaring music files
 	Music mainLevel;
 	Music levelOneMusic;
 
-    
-    public boolean pressed = false;
+  
     
     //Size of the game window
     public static int Wscreen = 1240;
@@ -59,20 +57,17 @@ public class SimpleSlickGame extends BasicGame
 
     //Loading classes
     public playerbaby player;
-    //public playerbaby playerIdle;
-    //public Gem gems;
-    
-   
-
-    
     public levelone level;
     public levelTwo levelt;
     public GameOver gameOver;
     
+    //Initialising the levelnumber
     int levelnum = 0;
     
-    
+  //Initialising the diamonds
     public Gem[] gems = new Gem[10];
+    
+    
     public SimpleSlickGame(String gamename)
     {
         super(gamename);
@@ -82,39 +77,35 @@ public class SimpleSlickGame extends BasicGame
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-    	
+    	// initialising music files
         mainLevel = new Music("Rec/impact-of-silence.ogg");
         levelOneMusic = new Music("Rec/vicious.ogg");
-        
-
-    	
-		Sound doorOpen = new Sound("Rec/0584.ogg");
+        //initialising image files
         background2 = new Image("Rec/grunge-tileset2.png");
         door1 = new Image("Rec/grunge-tileset-door1.png");
         door2 = new Image("Rec/grunge-tileset-door2.png");
+        //setting framerate
         gc.setTargetFrameRate(24);
+        
+        //initialisning classes
         player = new playerbaby();
-        
-        
-      
-        
         level = new levelone();
         levelt = new levelTwo();
         gameOver = new GameOver();
-        player.init(gc);
-//        gems[1].init(gc);
-        System.out.println("GEMS    "+gems[1]);
-       // gems[0].init(gc);
-      //  gems = new Gem[10];
         
+        
+        player.init(gc);
+
+        //initialising diamonds
         for(int i = 0; i<gems.length;i++){
         	gems[i] = new Gem();
         	gems[i].gemX = 600*i+400;
         }
         
-        
+        //running the init methods 
         level.init(gc);
         levelt.init(gc);
+        //playing the menu sounds
         mainLevel.play(); 
         
         
@@ -124,6 +115,7 @@ public class SimpleSlickGame extends BasicGame
     
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
+    	//running the update methods
     	level.update();
     	levelt.update();
     	player.update();
@@ -131,15 +123,12 @@ public class SimpleSlickGame extends BasicGame
 
 
     	
-    	
+    	//running the update methods of the diamonds
     	 for(int i2 = 0; i2<gems.length;i2++){
-    	       
-    		 
-    		 gems[i2].update();
-    	        
-    	        
-    	       
+    		 gems[i2].update();  
     	        }    	
+    	 
+    	 //INPUTS
     	if(gc.getInput().isKeyDown(Input.KEY_D)&&levelnum==0){
             player.direction = player.LEFT;
         } else if (gc.getInput().isKeyDown(Input.KEY_A)&&levelnum==0){
@@ -177,7 +166,7 @@ public class SimpleSlickGame extends BasicGame
         
         
         
-        
+       //creating the moving screen with paralax 
         if(levelnum==1&&gc.getInput().isKeyDown(Input.KEY_D)||levelnum==3&&gc.getInput().isKeyDown(Input.KEY_D)){
         	
         	for(int i4 = 0; i4<gems.length;i4++ ){
@@ -189,7 +178,7 @@ public class SimpleSlickGame extends BasicGame
             player.movePlayer=false;
             player.playerWalking=true;
          
-            
+           //making the diamonds disappear and counting points 
            for(int i5 = 0;i5<gems.length;i5++){
             if(player.posX==gems[i5].gemX+70&&gems[i5].gemY>-200&&levelnum==1){
             	gems[i5].gemY=-200;
@@ -216,22 +205,21 @@ public class SimpleSlickGame extends BasicGame
         	if(level.screenPos3<endOfScreen){
         		levelnum=2;
         	}
-          
-  
-        	System.out.println(levelnum);
+        
         }
     
     
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException
     {  
-      	
+      	//showing the game over screen and resetting the score
     	if(gc.getInput().isKeyDown(Input.KEY_0)){
     	levelnum=0;
     	startPos= true;
     	levelt.points=0;
     	level.points=0;
     }
+    	//showing the menu screen and the two doors
     if(levelnum == 0){
         background2.draw(0, 0, 1728 , Hscreen); 
        
@@ -245,10 +233,10 @@ public class SimpleSlickGame extends BasicGame
 
         }
               
-        g.drawString("ENTER DOOR & PRESS W TO START GAME",500, 100);
+        g.drawString("ENTER DOOR & PRESS W TO START GAME & PRESS 0 TO RETURN HERE",500, 100);
     }
     
-    
+    // showing the different levels when door is entered
     if(levelnum == 1){
                     level.render(g);
                     
@@ -270,12 +258,11 @@ public class SimpleSlickGame extends BasicGame
         	gems[i3].render();
  }   
     }
+    //rendering player 
     player.render();
-//    if(gc.getInput().isKeyDown(Input.KEY_0)){
-//    	levelnum=0;
-//    	startPos= true;
-//    }
+
     }
+    
     public static void main(String[] args)
     {
         try
