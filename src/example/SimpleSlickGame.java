@@ -39,6 +39,12 @@ public class SimpleSlickGame extends BasicGame
     
     //Audio files
 	public Sound doorOpen;
+
+	
+	//Music files
+	Music mainLevel;
+	Music levelOneMusic;
+
     
     public boolean pressed = false;
     
